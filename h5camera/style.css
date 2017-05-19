@@ -1,0 +1,42 @@
+/**
+ * 说明相机的高宽比例为4:3;
+ */
+body{
+	margin: 0;
+}
+.cx-camera-bg{
+	display: none;
+	position: fixed;
+    top: 0;
+    z-index: 99;
+    background-color: #000;
+    opacity: 0.3;
+    filter: alpha(opacity=30);
+    width: 100%;
+    height: 100%;
+}
+.cx-camera-box{
+	display: none;
+	position: fixed;
+	top: 100px;
+	z-index: 199;
+	width: 500px;
+	height: 400px;
+	background-color: #FFFFFF;
+	border-radius: 5px;
+	left: 50%;
+	margin-left: -250px;
+	text-align: center;
+}
+.cx-video-box{
+	width: 480px;
+	height: 360px;
+	padding: 10px;
+}
+.cx-video-box video{
+	width: 480px;
+	height: 360px;
+}
+#cxCanvas{
+	display: none;
+}

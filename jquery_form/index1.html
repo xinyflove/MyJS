@@ -1,0 +1,57 @@
+<!doctype html>
+<head>
+<title>File Upload Progress Demo #3</title>
+<style>
+.upload_progress { position:relative; width:400px; border: 1px solid #ddd; padding: 1px; border-radius: 3px; }
+.upload_bar { background-color: #B4F5B4; width:0%; height:20px; border-radius: 3px; }
+.upload_percent { position:absolute; display:inline-block; top:3px; left:48%; }
+</style>
+</head>
+<body>
+    <h1>File Upload Progress Demo #1</h1>
+	<code>&lt;input type="file" name="myfile"></code>
+	    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <input type="file" name="myfile"><br>
+        <input type="submit" value="Upload File to Server">
+    </form>
+    
+    <div class="upload_progress">
+        <div class="upload_bar"></div >
+        <div class="upload_percent">0%</div >
+    </div>
+    
+    <div id="upload_status">完成</div>
+    
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.form.js"></script>
+<script>
+(function() {
+    
+var upload_bar = $('.upload_bar');
+var upload_percent = $('.upload_percent');
+var upload_status = $('#upload_status');
+   
+$('form').ajaxForm({
+    beforeSend: function() {
+        upload_status.empty();
+        var upload_percentVal = '0%';
+        upload_bar.width(upload_percentVal)
+        upload_percent.html(upload_percentVal);
+    },
+    uploadProgress: function(event, position, total, upload_percentComplete) {
+        var upload_percentVal = upload_percentComplete + '%';
+        upload_bar.width(upload_percentVal)
+        upload_percent.html(upload_percentVal);
+    },
+    success: function() {
+        var upload_percentVal = '100%';
+        upload_bar.width(upload_percentVal)
+        upload_percent.html(upload_percentVal);
+    },
+	complete: function(xhr) {
+		upload_status.html(xhr.responseText);
+	}
+}); 
+
+})();
+</script>

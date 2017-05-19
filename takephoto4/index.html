@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Javascript+PHP实现在线拍照功能</title>
+	<link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="webcam.js"></script>
+</head>
+
+<body>
+<button onclick="document.getElementById('camera').style.display='block';">拍照</button>
+<div id="camera">
+	<div id="cam">
+		<script language="JavaScript">
+			webcam.set_api_url( 'action.php' );
+			webcam.set_quality( 90 ); // JPEG quality (1 - 100)
+			webcam.set_shutter_sound( true ); // play shutter click sound
+			document.write( webcam.get_html(320, 240, 160,120) );
+
+			webcam.set_hook( 'onComplete', 'my_completion_handler' );
+		</script>
+		<p style="text-align:center">
+			<input type=button value="点击这里拍照" class="btn" onclick="take_snapshot()">
+		</p>
+	</div>
+</div>
+
+<div id="results">
+
+</div>
+
+
+<script language="JavaScript">
+	function take_snapshot() {
+		// take snapshot and upload to server
+		document.getElementById('results').innerHTML = '<h4>Uploading...</h4>';
+		webcam.snap();
+	}
+
+	function my_completion_handler(msg) {
+		// extract URL out of PHP output
+		if (msg.match(/(http\:\/\/\S+)/)) {
+			var image_url = RegExp.$1;
+			// show JPEG image in page
+			document.getElementById('results').innerHTML =
+					'<h4>Upload Successful!</h4>' +
+					'<img src="' + image_url + '">';
+
+			// reset camera for another shot
+			webcam.reset();
+		}
+		else alert("PHP Error: " + msg);
+		document.getElementById('camera').style.display='none';
+	}
+</script>
+</body>
+</html>

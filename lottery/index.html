@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>抽奖</title>
+	<script src="js/jquery-2.1.3.min.js"></script>
+</head>
+<style>
+.demo{width:300px; margin:60px auto; text-align:center}
+#roll{height:32px; line-height:32px; font-size:24px; color:#f30}
+.btn{width:80px; height:26px; line-height:26px; border:1px solid #d3d3d3; cursor:pointer}
+#stop{display:none}
+#result{margin-top:20px; line-height:24px; font-size:16px; text-align:center}
+</style>
+<body>
+	<div id="roll"></div>
+	<input type="hidden" id="mid" value="">
+	<p>
+	<input type="button" class="btn" id="start" value="开始">
+	<input type="button" class="btn" id="stop" value="停止">
+	<input type="button" class="btn" id="reset" value="重置">
+	</p>
+	<div id="result"></div>
+</body>
+<script>
+$(function(){
+var _gogo;
+var start_btn = $("#start");
+var stop_btn = $("#stop");
+var reset_btn = $("#reset");
+
+    start_btn.click(function(){
+        $.getJSON('php/data.php?action=start',function(res){
+            if(res.code){
+                obj = res.data;
+                var len = obj.length;
+                _gogo = setInterval(function(){
+                    var num = Math.floor(Math.random()*len);//获取随机数
+                    var id = obj[num]['id']; //随机id
+                    var v = obj[num]['mobile']; //对应的随机号码
+                    $("#roll").html(v);
+                    $("#mid").val(id);
+                },100); //每隔0.1秒执行一次
+                stop_btn.show();
+                start_btn.hide();
+                reset_btn.hide();
+            }else{
+                $("#roll").html('系统找不到数据源，请先导入数据。');
+            }
+        });
+    });
+
+    stop_btn.click(function(){
+        clearInterval(_gogo);
+        var mid = $("#mid").val();
+        $.post("php/data.php?action=stop",{id:mid},function(res){
+			res = eval('('+res+')');
+            if(res.code){
+                var mobile = $("#roll").html();
+                $("#result").append("<p>"+mobile+"</p>");
+				stop_btn.hide();
+				start_btn.show();
+				reset_btn.show();
+            }else{
+				$("#roll").html('系统错误，抽奖失败。');
+			}
+        });
+    });
+
+    reset_btn.click(function(){
+        $.getJSON('php/data.php?action=reset',function(res){
+			if(res.code){
+                $("#roll").html('重置成功。');
+				//stop_btn.hide();
+				//start_btn.show();
+            }else{
+				$("#roll").html('系统错误，重置失败。');
+			}
+        });
+    });
+});
+</script>
+</html>

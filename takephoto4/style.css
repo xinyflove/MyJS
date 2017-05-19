@@ -1,0 +1,21 @@
+#camera{
+    position: fixed;
+    top: 0;
+    left: 50%;
+    margin-left: -210px;
+}
+#cam{
+    width: 320px;
+    height: 300px;
+    margin: 20px;
+}
+.btn{
+    height:28px;
+    line-height:28px;
+    border:1px solid #d3d3d3;
+    margin-top:10px; background:url(btn_bg.gif) repeat-x;
+    cursor:pointer
+}
+#results{
+    margin-top:50px
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      .main {
+        height: 100%;
+      }
+      .list {
+        width: 20%;
+        height: 100%;
+        float: left;
+      }
+      .map {
+        width: 80%;
+        height: 100%;
+        float: left;
+      }
+      #map {
+        height: 100%;
+        width: 100%
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="list"></div>
+      <div class="map">
+        <div id="map"></div>
+      </div>
+    </div>
+
+    <script>
+
+    var map;  // 定义全局map变量
+    function initMap() {
+      var chicago = new google.maps.LatLng(41.850, -87.650);  // 定义一个位置
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: chicago,  // 定义中心位置
+        zoom: 8,  // 定义放大级别
+        mapTypeId: google.maps.MapTypeId.ROADMAP  // 定义显示类型
+      });
+    }
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjoKL3DbzZtHY4qG24WeX2fOdx_vW9IKc&callback=initMap"
+        async defer></script>
+  </body>
+</html>

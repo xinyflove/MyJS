@@ -1,0 +1,24 @@
+.avatar-box{
+	width:800px;
+	margin:auto;
+	border:1px #bbb solid;
+	border-radius:5px;
+	box-shadow:1px 1px 10px rgba(0, 0, 0, 0.25);
+	padding:20px;
+	text-align:left;
+}
+.avarar-title{
+	border-radius:5px;
+	background-color:#f5f5f5;
+	padding:10px;
+	font-size:32px;
+	margin-bottom:10px;
+}
+.avatar-panel{
+	width:100%;
+	border:#eee 1px solid;
+}
+.avatar-panel tr td:first-child{
+	text-align: right;
+	width:120px;
+}

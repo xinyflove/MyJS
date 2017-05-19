@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>MooTools</title>
+	<script src="MooTools-Core-1.6.0.js"></script>
+</head>
+
+<body>
+	<a id="demo1" href="javascript:;">click me</a>
+	<div class="foo">foo</div>
+	<div class="bar">bar</div>
+</body>
+
+<script>
+	// typeOf
+	var myString = 'hello'; 
+	typeOf(myString); // 返回 "string"
+
+	Array.implement('limitTop', function(top){
+		for (var i = 0, l = this.length; i < l; i++){ 
+			if (this[i] > top) this[i] = top; 
+		} 
+		return this;
+	});
+
+	// instanceOf
+	var foo = []; 
+	instanceOf(foo, Array); // 返回 true 
+	instanceOf(foo, String); // 返回 false
+	var myClass = new Class(); 
+	var bar = new myClass(); 
+	instanceOf(bar, myClass) // 返回 true
+
+	// implement
+	Array.implement('limitTop', 
+		function(top){ 
+			for (var i = 0, l = this.length; i < l; i++){ 
+				if (this[i] > top) this[i] = top; 
+			} 
+		return this; 
+	});
+	[1, 2, 3, 4, 5, 6].limitTop(4); // 返回 [1, 2, 3, 4, 4, 4]
+
+	String.implement({ 
+		repeat: function(times){ 
+			var string = ''; 
+			while (times--) string += this; 
+			return string; 
+		}, 
+		ftw: function(){ 
+			return this + ' FTW!'; 
+		} 
+	});
+	'moo! '.repeat(3); // 返回 "moo! moo! moo! " 
+	'MooTools'.ftw(); // 返回 "MooTools FTW!" 
+	('MooTools'.ftw() + ' ').repeat(2); // 返回 "MooTools FTW! MooTools FTW! "
+
+	// extend
+	RegExp.extend('from', function(regexp, flags){ 
+		return new RegExp(regexp, flags); 
+	});
+	Number.extend('parseCurrency', function(currency){ 
+		//取得一个字符串并转换成数组，然后进行特定计算 
+	});
+	console.log(('MooTools'.ftw() + ' ').repeat(2));
+</script>
+</html>

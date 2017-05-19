@@ -1,0 +1,26 @@
+.green{
+	color: green;
+}
+.deeppink{
+	color: #f0f;
+}
+.box{
+	width: 800px;
+	height: 400px;
+	margin: 10px auto;
+	padding: 10px;
+	border: 1px solid #eee;
+}
+.showpic{
+	width: 200px;
+	height: 200px;
+	margin: 5px auto;
+	display: none;
+}
+.showmsg{
+	width: 800px;
+	height: 300px;
+	margin: 10px auto;
+	padding: 10px;
+	border: 1px solid #eee;
+}

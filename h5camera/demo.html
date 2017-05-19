@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>H5调用摄像头Demo</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="jquery.min.js"></script>
+	<script src="script.js"></script>
+	<!-- jquery.imgareaselect beging -->
+	<link rel="stylesheet" href="imgareaselect-0.9.10/css/imgareaselect-default.css">
+	<script src="imgareaselect-0.9.10/js/jquery.imgareaselect.pack.js"></script>
+	<!-- jquery.imgareaselect end -->
+</head>
+<body>
+<button onclick="cxOpenCamera();">点击拍照</button>
+
+	<div class="cx-camera-bg"></div>
+	<div class="cx-camera-box">
+		<div class="cx-video-box">
+			<video id="cxVideo" autoplay></video>
+			<canvas id="cxCanvas" width="480" height="360"></canvas>
+			<button id="cxSnap" onclick="cxSnap();">拍照</button>
+			<button id="cxSavePic" onclick="cxSavePic();">保存</button>
+			<button id="cxCloseCamera" onclick="cxCloseCamera();">关闭</button>
+		</div>
+	</div>
+	<form action="">
+	  <input type="hidden" name="cx_x1" value="" />
+	  <input type="hidden" name="cx_y1" value="" />
+	  <input type="hidden" name="cx_x2" value="" />
+	  <input type="hidden" name="cx_y2" value="" />
+	</form>
+	
+<script>
+
+</script>
+</body>
+</html>

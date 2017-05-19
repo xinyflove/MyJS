@@ -1,0 +1,19 @@
+.starrating {
+	display: inline-block
+}
+.starrating i {
+	font-size: 16px;
+	padding: 0 1px;
+	cursor: pointer;
+	color: #ffd119
+}
+
+.starrating-show {
+	display: inline-block
+}
+.starrating-show i {
+	font-size: 16px;
+	padding: 0 1px;
+	cursor: pointer;
+	color: #ffd119
+}
