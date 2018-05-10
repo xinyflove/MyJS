@@ -4,13 +4,15 @@ E-maile: xinyflove@sina.com<br>
 Desc: 存放了自己用过的js插件和一些比较好的js代码，方便以后使用<br>
 
 ## 目录说明
+
+### 01lottery	抽奖程序<br>
 -1.h5camera        ---------H5调用摄像头拍照<br>
 -2.Image_Base64    ---------图片在线转换Base64,图片编码base64<br>
 -3.jquery_form     ---------Jquery Form 表单异步提交<br>
 -4.jquery-extend     ---------Jquery 扩展<br>
 -5.jquery-fullPage     ---------Jquery Form fullPage<br>
 -6.jquery-scroll     ---------Jquery Form 页面滚动<br>
--7.lottery         ---------抽奖程序<br>
+
 -8.map         ---------地图<br>
 -9.mobiscroll      ---------移动端日期时间选择框效果<br>
 -10.mobpopover      ---------移动端提示弹窗<br>
