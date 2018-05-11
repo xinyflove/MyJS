@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>915收集</title>
+	<script src="js/ydui.flexible.js"></script>
+	<link rel="stylesheet" href="css/public.css">
+	<link rel="stylesheet" type="text/css" href="css/ydui.css"/>
+	<link rel="stylesheet" href="css/collect.css">
+</head>
+<body>
+	<div class="m-915-collect">
+        
+        <div><img src="images/card.png" alt=""></div>
+        <button class="m-915-collect-btn" data-Type="1">点击领取</button>
+        <a href="">查看我的活动</a>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/ydui.js"></script>
+    <script>
+    $(function() {
+        //data-type为0时不能领取，领取成功
+        //         为1时可以领取
+        var dialog = window.YDUI.dialog;
+        $(".m-915-collect").on("click",".m-915-collect-btn",function(){
+            if($(this).attr("data-type")==0){
+                dialog.alert('卡片已领取');
+            }else{
+                dialog.alert('卡片领取成功');
+                $(this).attr("data-type","0")
+                $(this).html("领取成功")
+            }
+        })
+    })
+    </script>
+</body>
+</html>

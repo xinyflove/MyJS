@@ -47,12 +47,11 @@
 				</dd>
 			</dl>
 			<div class="index-icon">
-				<!-- <img src="images/icon1.png" alt="">
+				<img src="images/icon1.png" alt="">
 				<img src="images/icon2.png" alt="">
 				<img src="images/icon3.png" alt="">
 				<img src="images/icon4.png" alt="">
-				<img src="images/icon5.png" alt=""> -->
-				<img src="images/banner.png" />
+				<img src="images/icon5.png" alt="">
 			</div>
 			<ul class="index-tab">
 				<li class="tab-rules">活动规则</li>
@@ -88,48 +87,40 @@
 				</div>
 				<div class="modal-2-top">
 					<div class="modal-2-top-box">
-						<ul class="modal-2-top-box-ul">
+						<ul>
 							<li>
 								<div>
 									<img src="images/1.png">
-									<img class="img-active" src="images/duigou.png" alt="">
 								</div>
-								
 								<p>0张</p>
 							</li>
 							<li>
 								<div>
 									<img src="images/5.png">
-									<img class="img-active" src="images/duigou.png" alt="">
 								</div>
-								
 								<p>0张</p>
 							</li>
 							<li>
 								<div>
 									<img src="images/1.png">
-									<img class="img-active" src="images/duigou.png" alt="">
 								</div>
 								<p>0张</p>
 							</li>
 							<li>
 								<div>
 									<img src="images/9.png">
-									<img class="img-active" src="images/duigou.png" alt="">
 								</div>
 								<p>0张</p>
 							</li>
 							<li>
 								<div>
 									<img src="images/单.png">
-									<img class="img-active" src="images/duigou.png" alt="">
 								</div>
 								<p>0张</p>
 							</li>
 							<li>
 								<div>
 									<img src="images/免.png">
-									<img class="img-active" src="images/duigou.png" alt="">
 								</div>
 								<p>0张</p>
 							</li>
@@ -157,27 +148,8 @@
 </body>
 <script type="text/javascript" src="js/ydui.js"></script>
 <script>
+
 $(function() {
-
-	
-	// 点击空白处选中状态消失
-	$("body").find(".modal-2-top-box").on("click","ul",function(event){
-		//$(".modal-2-top-box li").removeClass("active")
-		console.log(event.target)
-		if(event.target.className=="modal-2-top-box-ul"){
-			$(".modal-2-top-box li").removeClass("active")
-		}
-	})
-	//点击添加选中状态
-	$("body").find(".modal-2-top-box").on("click","li",function(){
-		console.log(1)
-		$(".modal-2-top-box li").removeClass("active")
-		$(this).addClass("active")
-	})
-	
-
-
-
 	var dialog = window.YDUI.dialog;
 	//点击按钮关闭
 	$(".close").click(function(){
@@ -201,11 +173,11 @@ $(function() {
 	var oli=document.getElementsByTagName("dd"),  
      btn=document.querySelector(".index-play"),  
      odl=document.querySelectorAll(".dl"),  
-     Let=10,H=20,first=3,second=5,
+     Let=12,H=20,first=3,second=5,
      third=8,cf=cs=ct=0,timer=null,str="";  
      // 抽奖次数
-     var count = 2;
-     $('.tab-count span').html(count)
+     //var count = 2;
+    // $('.tab-count span').html(count)
     for (var i = 0; i < odl.length; i++) {  
         var html=odl[i].innerHTML;  
             odl[i].innerHTML="";  
@@ -258,8 +230,8 @@ $(function() {
             }  
         },30)  
      }  
-     function run(){  
-     	var arr = [0,3,4]; //最终抽奖结果
+     function run(arr){  
+     	//var arr = [0,3,4]; //最终抽奖结果
         for (var i = 0; i < oli.length; i++) { 
             oli[i].value=arr[i]+5;  
         var Num=parseInt(oli[i].value),  
@@ -287,20 +259,38 @@ $(function() {
          }  
          // 点击抽奖
          btn.onclick=function(){  
-         	if(count > 0){
-         		count--;
-         		$('.tab-count span').html(count)
+			str=""
+			// var arr = [0,1,2];
+			// run(arr);
+			//return false;
+         		//$('.tab-count span').html(count)
 				var _this = $(this); 
 				if(!_this.hasClass('active')){
 					_this.addClass('active');
 				}
-				str="";
-            	run()  
-	     	}else{
-	     		$('.tab-count span').html(0)
-	     		dialog.alert('您的次数已用完');
-	     	}
-     	 
+
+
+				$.ajax({
+					url:"http://wx.tvplaza.cn/app/index.php?i=17&c=entry&rid=60&do=collect&m=collect_words",
+					type:'post',
+					dataType:'json',
+					success:function(award){
+						if(award.status==1){
+							var arr = [award.words[0].key,award.words[1].key,award.words[2].key];
+							$('#myword').empty();
+
+							$("#myword").append(award.html);
+							$("#c_number").html(award.prize_count);
+							run(arr);
+						}else{
+							YDUI.dialog.toast(award.msg, 'none', function(){
+								window.location.reload();
+							});
+							//$.toast(award.msg, "text");
+						}
+					}
+				});
+            	
      }
 })
 </script>
